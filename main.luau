@@ -365,7 +365,7 @@ function library:Load(opts)
 				value = not value
 				setState(value)
 			end)
-			return options
+			return options, toggle_main
 		end
 			
 		function sectionData:Button(opts)        
@@ -1166,6 +1166,21 @@ function library:Load(opts)
 				return options
 			end
 			
+			function horizontalData:Toggle(...)
+				local data, object
+				local ret = {sectionData:Toggle(...)}
+				if typeof(ret[1]) == "table" then
+					data = ret[1]
+					object = ret[2]
+					object.Parent = horizontal_frame
+					return data, object
+				else
+					object = ret[1]
+					object.Parent = horizontal_frame
+					return object
+				end
+			end
+			
 			function horizontalData:Show()
                 horizontal_frame.Visible = true
             end
@@ -1185,6 +1200,7 @@ function library:Load(opts)
 end
 
 return library
+
 --[[
 local Window = library:Load({ name = "Big Dih Mark" })
 
@@ -1272,6 +1288,19 @@ row2:AddButton({
     name = "Click me!!",
     callback = function()
         print("Button 3 clicked")
+    end
+})
+
+
+row2:Toggle({
+    name = "Enable Feature",
+    value = false,
+    callback = function(state)
+        if state then
+            print("Feature Enabled")
+        else
+            print("Feature Disabled")
+        end
     end
 })
 
