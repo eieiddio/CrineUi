@@ -1,14 +1,11 @@
 
--- just for optional
-local gui = Instance.new("ScreenGui")
-gui.Name = "a gui for smth"
-gui.Parent = game.CoreGui
-
-
 local TweenService = game:GetService("TweenService")
 local modules = {}
 
-function modules:GetOuttaHere(pp, ppp, pppp)
+function modules:GetOuttaHere(pp, ppp)
+local gui = Instance.new("ScreenGui")
+gui.Name = "a gui for smth"
+gui.Parent = game.CoreGui
 	local main = Instance.new("Frame")
 	main.ZIndex = 8
 	main.Name = "main"
@@ -20,15 +17,10 @@ function modules:GetOuttaHere(pp, ppp, pppp)
 	main.BorderSizePixel = 0
 	main.Active = true
 	main.BackgroundTransparency = 0
-	main.Draggable = true
-
-    if pppp ~= nil then
-    	main.Parent = pppp
-    else
-        main.Parent = gui
-    end
+	main.Draggable = true -- allows you to move the frame freely
+	main.Parent = gui -- change this to gui
 	
-	local list = Instance.new("UIListLayout")
+		local list = Instance.new("UIListLayout")
 	list.Name = "list"
 	list.SortOrder = Enum.SortOrder.LayoutOrder
 	list.Padding = UDim.new(0, 6)
