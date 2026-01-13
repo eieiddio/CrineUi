@@ -2,10 +2,14 @@
 local TweenService = game:GetService("TweenService")
 local modules = {}
 
-function modules:GetOuttaHere(pp, ppp)
-local gui = Instance.new("ScreenGui")
-gui.Name = "a gui for smth"
-gui.Parent = game.CoreGui
+function modules:GetOuttaHere(pp)
+	local name = pp.name or "idk"
+	local contexto = pp.context or "idk"
+	
+	local gui = Instance.new("ScreenGui")
+	gui.Name = "a gui for smth"
+	gui.Parent = game.CoreGui
+
 	local main = Instance.new("Frame")
 	main.ZIndex = 8
 	main.Name = "main"
@@ -52,14 +56,14 @@ gui.Parent = game.CoreGui
 	title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	title.BorderSizePixel = 1
-	title.Text = pp or "Popup"
+	title.Text = name
 	title.BackgroundTransparency = 1
 	title.TextColor3 = Color3.fromRGB(255,255,255)
 	title.Font = Enum.Font.Gotham
 	title.Parent = main
 	title.TextSize = 15
 	
-	if ppp ~= nil then
+	if contexto ~= nil then
 	local context = Instance.new("TextLabel")
 	context.ZIndex = 8
 	context.Name = "context"
@@ -68,7 +72,7 @@ gui.Parent = game.CoreGui
 	context.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	context.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	context.BorderSizePixel = 1
-	context.Text = ppp or "there's an existing UI\n do you want to delete the previous UI?"
+	context.Text = contexto
 	context.TextYAlignment = "Top"
 	context.TextWrapped = true
 	context.AutomaticSize = "Y"
@@ -77,6 +81,7 @@ gui.Parent = game.CoreGui
 	context.Font = Enum.Font.Gotham
 	context.Parent = main
 	context.TextSize = 13
+	end
 	
 	local trash = Instance.new("Frame")
 	trash.ZIndex = 8
@@ -174,8 +179,12 @@ gui.Parent = game.CoreGui
 end
 
 return modules
+
 --[[
-local mainUI, buttons = modules:GetOuttaHere()
+local mainUI, buttons = modules:GetOuttaHere({
+    name = "Popup Title",
+    context = "Do you want to delete the previous UI?"
+})
 
 buttons:SetButton("Yes", function()
     mainUI:Destroy()
@@ -184,5 +193,4 @@ end)
 buttons:SetButton("No", function()
     print("Cancelled")
 end)
-
 ]]
