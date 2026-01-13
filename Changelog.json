@@ -1,6 +1,10 @@
 [
   {
-    "version": "0.1",
+    "version": "v0.2",
+    "changes": "fixes some shit and redesign some uis"
+  },
+  {
+    "version": "v0.1",
     "changes": "being existed"
   }
 ]
